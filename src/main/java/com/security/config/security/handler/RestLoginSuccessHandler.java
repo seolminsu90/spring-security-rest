@@ -13,6 +13,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.stereotype.Component;
 
 import com.security.api.domain.UserDetailsDTO;
+import com.security.config.security.util.ResponseWriter;
 import com.security.util.JWTUtil;
 
 @Component
@@ -30,15 +31,7 @@ public class RestLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
 		UserDetailsDTO info = (UserDetailsDTO) authentication.getPrincipal();
 		String authenticationToken = jwtUtil.createToken(info, ip_address);
 		logger.debug("AuthenticationToken : " + authenticationToken);
-
-		response.setContentType("application/json");
-		response.setCharacterEncoding("utf-8");
-
-		String data =  "{'msg' : "+ authenticationToken +"}";
-
-		PrintWriter out = response.getWriter();
-		out.print(data);
-		out.flush();
-		out.close();
+		
+		ResponseWriter.write(response, "로그인", -1, authenticationToken);
 	}
 }
