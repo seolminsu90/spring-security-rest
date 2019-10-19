@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /console
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:linedata;MODE=MySQL;DB_CLOSE_DELAY=-1;;
+    username: test
+    password: 1234
+    schema: classpath:schema.sql
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
