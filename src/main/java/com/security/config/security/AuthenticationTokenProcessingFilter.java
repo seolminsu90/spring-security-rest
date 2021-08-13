@@ -27,11 +27,8 @@ import com.security.util.JWTUtil;
 
 @Component
 public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
-	@Autowired
-	private UserService userService;
-
-	@Autowired
-	private JWTUtil jwtUtil;
+	private final UserService userService;
+	private final JWTUtil jwtUtil;
 
 	public AuthenticationTokenProcessingFilter(UserService userService, JWTUtil jwtUtil) {
 		this.userService = userService;
